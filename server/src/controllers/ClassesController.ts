@@ -13,11 +13,25 @@ interface ScheduleItem {
 export default class ClassesController {
   async index(request: Request, response: Response) {
     const filters = request.query;
-    if (!filters.weekday || !filters.subject || !filters.time) {
+
+    const subject = filters.subject as string;
+    const week_day = filters.subject as string;
+    const time = filters.time as string;
+
+    if (!filters.week_day || !filters.subject || !filters.time) {
       return response.status(400).json({
         error: 'Missing filters to search classes'
       })
     }
+
+    const timeInMinutes = convertHourToMinutes(filters.time as string);
+
+    const classes = await db('classes')
+      .where('classes.subject', '=', subject )
+      .join('users', 'classes.user_id', '=', 'users.id')
+      .select(['classes.*', 'users.*']);
+
+    return response.json(classes);
   }
 
   async create (request: Request, response: Response) {
