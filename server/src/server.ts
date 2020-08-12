@@ -8,6 +8,6 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-//localhost:3001
+//localhost:3000
 
-app.listen(3001);
+app.listen(3000);
