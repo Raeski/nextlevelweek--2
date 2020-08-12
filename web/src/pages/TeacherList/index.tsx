@@ -6,7 +6,6 @@ import TeacherItem from '../../components/TeacherItem';
 
 import './styles.css'
 import Input from '../../components/Input';
-import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 
 function TeacherList() {
